@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レコレコ - プロフィール</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .username {
+            font-weight: bold;
+            color: #667eea;
+        }
+    </style>
+    <script>
+        // URLからユーザー名を取得
+        function getUsername() {
+            const path = window.location.pathname;
+            const parts = path.split('/').filter(p => p);
+            return parts[parts.length - 1] || 'ユーザー';
+        }
+
+        // アプリのインストール状況をチェック
+        function checkAppInstallation() {
+            const username = getUsername();
+            document.getElementById('username').textContent = username;
+
+            // Universal Linkが動作しない場合（アプリ未インストール）
+            // この画面が表示される
+        }
+
+        window.onload = checkAppInstallation;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🎵</div>
+        <h1>レコレコ</h1>
+        <p class="subtitle">おすすめの音楽を紹介しよう</p>
+
+        <p class="message">
+            <span class="username" id="username"></span> さんのプロフィールを見るには、<br>
+            レコレコアプリが必要です。
+        </p>
+
+        <a href="https://apps.apple.com/jp/app/id YOUR_APP_ID" class="download-btn">
+            App Storeからダウンロード
+        </a>
+
+        <div class="footer">
+            アプリをインストールすると、<br>
+            このリンクから直接プロフィールが開けるようになります
+        </div>
+    </div>
+</body>
+</html>

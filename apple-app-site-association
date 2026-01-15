@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "M86QCKBHW8.com.sugarbeat.SugarBeat",
+        "paths": ["/profile/*"]
+      }
+    ]
+  }
+}
