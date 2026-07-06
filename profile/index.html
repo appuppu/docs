@@ -3,7 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レコレコ - プロフィール</title>
+    <title>my42</title>
+    <script>
+        (function() {
+            var l = null;
+            try { l = localStorage.getItem('lang'); } catch (e) {}
+            if (l !== 'ja' && l !== 'en') {
+                l = ((navigator.language || '').toLowerCase().indexOf('ja') === 0) ? 'ja' : 'en';
+            }
+            document.documentElement.lang = l;
+        })();
+        function setLang(l) {
+            try { localStorage.setItem('lang', l); } catch (e) {}
+            document.documentElement.lang = l;
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -85,45 +99,102 @@
             font-weight: bold;
             color: #667eea;
         }
+
+        html[lang="ja"] [data-lang="en"] { display: none !important; }
+        html[lang="en"] [data-lang="ja"] { display: none !important; }
+        .lang-switch {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 100;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+        .lang-switch button {
+            padding: 6px 12px;
+            border: none;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            cursor: pointer;
+        }
+        html[lang="ja"] .lang-switch #btn-ja,
+        html[lang="en"] .lang-switch #btn-en {
+            background: #fff;
+            color: #333;
+            font-weight: 600;
+        }
     </style>
     <script>
         // URLからユーザー名を取得
         function getUsername() {
             const path = window.location.pathname;
             const parts = path.split('/').filter(p => p);
-            return parts[parts.length - 1] || 'ユーザー';
+            // 末尾のセグメントをユーザー名として扱う（"profile"やindex.html自体は除外）
+            const last = parts[parts.length - 1] || '';
+            if (last && last !== 'profile' && last.indexOf('.html') === -1) return last;
+            return document.documentElement.lang === 'ja' ? 'ユーザー' : 'this user';
         }
 
-        // アプリのインストール状況をチェック
         function checkAppInstallation() {
             const username = getUsername();
-            document.getElementById('username').textContent = username;
-
-            // Universal Linkが動作しない場合（アプリ未インストール）
-            // この画面が表示される
+            document.querySelectorAll('.username').forEach(function(el) {
+                el.textContent = username;
+            });
         }
 
         window.onload = checkAppInstallation;
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🎵</div>
-        <h1>レコレコ</h1>
-        <p class="subtitle">おすすめの音楽を紹介しよう</p>
+    <div class="lang-switch">
+        <button id="btn-ja" onclick="setLang('ja')">日本語</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
 
-        <p class="message">
-            <span class="username" id="username"></span> さんのプロフィールを見るには、<br>
-            レコレコアプリが必要です。
-        </p>
+    <div data-lang="ja">
+        <div class="container">
+            <div class="icon">🎵</div>
+            <h1>my42</h1>
+            <p class="subtitle">おすすめの音楽を紹介しよう</p>
 
-        <a href="https://apps.apple.com/jp/app/id YOUR_APP_ID" class="download-btn">
-            App Storeからダウンロード
-        </a>
+            <p class="message">
+                <span class="username"></span> さんのプロフィールを見るには、<br>
+                my42アプリが必要です。
+            </p>
 
-        <div class="footer">
-            アプリをインストールすると、<br>
-            このリンクから直接プロフィールが開けるようになります
+            <a href="https://apps.apple.com/jp/app/id6754846506" class="download-btn">
+                App Storeからダウンロード
+            </a>
+
+            <div class="footer">
+                アプリをインストールすると、<br>
+                このリンクから直接プロフィールが開けるようになります
+            </div>
+        </div>
+    </div>
+
+    <div data-lang="en">
+        <div class="container">
+            <div class="icon">🎵</div>
+            <h1>my42</h1>
+            <p class="subtitle">Share your favorite music</p>
+
+            <p class="message">
+                To see <span class="username"></span>'s profile,<br>
+                you need the my42 app.
+            </p>
+
+            <a href="https://apps.apple.com/app/id6754846506" class="download-btn">
+                Download on the App Store
+            </a>
+
+            <div class="footer">
+                Once you install the app,<br>
+                this link will open the profile directly
+            </div>
         </div>
     </div>
 </body>

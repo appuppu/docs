@@ -3,7 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プライバシーポリシー - レコレコ</title>
+    <title>プライバシーポリシー / Privacy Policy - my42</title>
+    <script>
+        (function() {
+            var l = null;
+            try { l = localStorage.getItem('lang'); } catch (e) {}
+            if (l !== 'ja' && l !== 'en') {
+                l = ((navigator.language || '').toLowerCase().indexOf('ja') === 0) ? 'ja' : 'en';
+            }
+            document.documentElement.lang = l;
+        })();
+        function setLang(l) {
+            try { localStorage.setItem('lang', l); } catch (e) {}
+            document.documentElement.lang = l;
+        }
+    </script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -50,52 +64,132 @@
         .back-link:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+        html[lang="ja"] [data-lang="en"] { display: none !important; }
+        html[lang="en"] [data-lang="ja"] { display: none !important; }
+        .lang-switch {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 100;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+        .lang-switch button {
+            padding: 6px 12px;
+            border: none;
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            cursor: pointer;
+        }
+        html[lang="ja"] .lang-switch #btn-ja,
+        html[lang="en"] .lang-switch #btn-en {
+            background: #fff;
+            color: #333;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
-    <h1>プライバシーポリシー</h1>
+    <div class="lang-switch">
+        <button id="btn-ja" onclick="setLang('ja')">日本語</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
 
-    <p>最終更新日: 2025年1月1日</p>
+    <div data-lang="ja">
+        <h1>プライバシーポリシー</h1>
 
-    <h2>1. 収集する情報</h2>
-    <p>レコレコ（以下、「当アプリ」）では、以下の情報を収集します：</p>
-    <ul>
-        <li>アカウント情報（ユーザー名、メールアドレス、プロフィール情報）</li>
-        <li>投稿内容（音楽の紹介、コメント、いいね等）</li>
-        <li>利用状況データ（アプリの使用状況、アクセスログ）</li>
-        <li>Apple Musicとの連携情報</li>
-    </ul>
+        <p>最終更新日: 2026年7月6日</p>
 
-    <h2>2. 情報の利用目的</h2>
-    <p>収集した情報は以下の目的で利用します：</p>
-    <ul>
-        <li>サービスの提供・運営</li>
-        <li>ユーザーサポート</li>
-        <li>サービスの改善・新機能の開発</li>
-        <li>利用規約違反の対応</li>
-        <li>セキュリティの維持</li>
-    </ul>
+        <h2>1. 収集する情報</h2>
+        <p>my42（以下、「当アプリ」）では、以下の情報を収集します：</p>
+        <ul>
+            <li>アカウント情報（ユーザー名、メールアドレス、プロフィール情報）</li>
+            <li>投稿内容（音楽の紹介、コメント、いいね等）</li>
+            <li>利用状況データ（アプリの使用状況、アクセスログ）</li>
+            <li>Apple Musicとの連携情報</li>
+        </ul>
 
-    <h2>3. 情報の第三者提供</h2>
-    <p>当アプリは、以下の場合を除き、ユーザーの個人情報を第三者に提供することはありません：</p>
-    <ul>
-        <li>ユーザーの同意がある場合</li>
-        <li>法令に基づく場合</li>
-        <li>人の生命、身体または財産の保護のために必要がある場合</li>
-    </ul>
+        <h2>2. 情報の利用目的</h2>
+        <p>収集した情報は以下の目的で利用します：</p>
+        <ul>
+            <li>サービスの提供・運営</li>
+            <li>ユーザーサポート</li>
+            <li>サービスの改善・新機能の開発</li>
+            <li>利用規約違反の対応</li>
+            <li>セキュリティの維持</li>
+        </ul>
 
-    <h2>4. Apple Musicとの連携</h2>
-    <p>当アプリはApple Music APIを使用して音楽情報を取得します。Apple Musicへのアクセスには、ユーザーの明示的な同意が必要です。</p>
+        <h2>3. 情報の第三者提供</h2>
+        <p>当アプリは、以下の場合を除き、ユーザーの個人情報を第三者に提供することはありません：</p>
+        <ul>
+            <li>ユーザーの同意がある場合</li>
+            <li>法令に基づく場合</li>
+            <li>人の生命、身体または財産の保護のために必要がある場合</li>
+        </ul>
 
-    <h2>5. セキュリティ</h2>
-    <p>当アプリは、ユーザー情報の保護のため、適切なセキュリティ対策を実施しています。</p>
+        <h2>4. Apple Musicとの連携</h2>
+        <p>当アプリはApple Music APIを使用して音楽情報を取得します。Apple Musicへのアクセスには、ユーザーの明示的な同意が必要です。</p>
 
-    <h2>6. プライバシーポリシーの変更</h2>
-    <p>当アプリは、必要に応じて本プライバシーポリシーを変更することがあります。変更後のプライバシーポリシーは、本ページに掲載した時点で効力を生じるものとします。</p>
+        <h2>5. セキュリティ</h2>
+        <p>当アプリは、ユーザー情報の保護のため、適切なセキュリティ対策を実施しています。</p>
 
-    <h2>7. お問い合わせ</h2>
-    <p>プライバシーポリシーに関するお問い合わせは、アプリ内のお問い合わせフォームよりご連絡ください。</p>
+        <h2>6. プライバシーポリシーの変更</h2>
+        <p>当アプリは、必要に応じて本プライバシーポリシーを変更することがあります。変更後のプライバシーポリシーは、本ページに掲載した時点で効力を生じるものとします。</p>
 
-    <a href="index.html" class="back-link">← トップに戻る</a>
+        <h2>7. お問い合わせ</h2>
+        <p>プライバシーポリシーに関するお問い合わせは、アプリ内のお問い合わせフォームよりご連絡ください。</p>
+
+        <a href="index.html" class="back-link">← トップに戻る</a>
+    </div>
+
+    <div data-lang="en">
+        <h1>Privacy Policy</h1>
+
+        <p>Last updated: July 6, 2026</p>
+
+        <h2>1. Information We Collect</h2>
+        <p>my42 (the "App") collects the following information:</p>
+        <ul>
+            <li>Account information (username, email address, profile information)</li>
+            <li>Posted content (music posts, comments, likes, etc.)</li>
+            <li>Usage data (app usage, access logs)</li>
+            <li>Apple Music integration information</li>
+        </ul>
+
+        <h2>2. How We Use Information</h2>
+        <p>We use the collected information for the following purposes:</p>
+        <ul>
+            <li>Providing and operating the service</li>
+            <li>User support</li>
+            <li>Improving the service and developing new features</li>
+            <li>Responding to violations of the Terms of Service</li>
+            <li>Maintaining security</li>
+        </ul>
+
+        <h2>3. Sharing with Third Parties</h2>
+        <p>The App does not share your personal information with third parties, except in the following cases:</p>
+        <ul>
+            <li>With your consent</li>
+            <li>When required by law</li>
+            <li>When necessary to protect the life, body, or property of a person</li>
+        </ul>
+
+        <h2>4. Apple Music Integration</h2>
+        <p>The App uses the Apple Music API to retrieve music information. Access to Apple Music requires your explicit consent.</p>
+
+        <h2>5. Security</h2>
+        <p>The App implements appropriate security measures to protect user information.</p>
+
+        <h2>6. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy as necessary. The updated Privacy Policy takes effect when posted on this page.</p>
+
+        <h2>7. Contact Us</h2>
+        <p>For questions about this Privacy Policy, please contact us through the contact form in the app.</p>
+
+        <a href="index.html" class="back-link">← Back to Top</a>
+    </div>
 </body>
 </html>
